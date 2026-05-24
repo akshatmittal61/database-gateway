@@ -11,6 +11,14 @@ const message = Object.freeze({
 	HEALTHY_DB: "DB is healthy",
 	DB_CONNECTION_ERROR: "Unable to connect to database",
 	HEARTBEAT: "Heartbeat success",
+	APP_NOT_FOUND: "Registered app not found",
+	APP_IDENTIFIER_TAKEN: "An app with this identifier already exists",
+	APP_FORBIDDEN: "You do not have permission to access this app",
+	DB_NOT_ALLOWED:
+		"This app is not authorised to query the requested database",
+	GATEWAY_HEALTHY: "Gateway is operational",
+	GATEWAY_UNAUTHORIZED: "Invalid or missing API key",
+	KEY_ROTATED: "API key rotated successfully",
 });
 
 const status = Object.freeze({
