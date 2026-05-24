@@ -1,0 +1,54 @@
+{
+	"name": "node-ts-server-template",
+	"version": "1.0.0",
+	"description": "Basic template for backend server using typescript",
+	"main": "server.ts",
+	"engines": {
+		"node": ">=18.0.0",
+		"npm": "please-use-yarn",
+		"yarn": ">=1.22.0"
+	},
+	"repository": "https://github.com/akshatmittal61/node-ts-server-template.git",
+	"author": "Akshat Mittal <akshatmittal2506@gmail.com>",
+	"license": "MIT",
+	"private": false,
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.5",
+		"express": "^4.19.2",
+		"jsonwebtoken": "^9.0.2",
+		"mongoose": "^8.3.2",
+		"node-cache": "^5.1.2"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^19.6.1",
+		"@commitlint/config-conventional": "^19.6.0",
+		"@eslint/js": "^9.13.0",
+		"@types/cors": "^2.8.17",
+		"@types/express": "^4.17.21",
+		"@types/jsonwebtoken": "^9.0.7",
+		"@types/node": "^20.12.7",
+		"eslint": "^9.13.0",
+		"glob": "^11.0.3",
+		"globals": "^15.11.0",
+		"husky": "^9.1.6",
+		"nodemon": "^3.1.14",
+		"prettier": "^3.2.5",
+		"ts-node": "^10.9.2",
+		"tsconfig-paths": "^4.2.0",
+		"typescript": "^5.4.5",
+		"typescript-eslint": "^8.11.0"
+	},
+	"scripts": {
+		"start": "yarn build && node build/server.js",
+		"dev": "nodemon",
+		"build": "tsc",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"lint": "eslint .",
+		"prepare": "husky",
+		"clean": "rm -rf build/ && rm -rf .cache/ && rm -rf .yarn/ && rm -rf coverage/",
+		"reset": "yarn clean && rm -rf node_modules/ && rm -rf logs/",
+		"test": "echo \"Error: no test specified\" && exit 0"
+	}
+}

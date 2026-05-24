@@ -1,0 +1,48 @@
+import { CHECK_INTERVAL, MAX_KEYS, TTL_SECONDS } from "@/constants";
+import NodeCache from "node-cache";
+
+class CacheFactory {
+	private cache: NodeCache;
+
+	constructor() {
+		this.cache = new NodeCache({
+			stdTTL: TTL_SECONDS,
+			checkperiod: CHECK_INTERVAL,
+			useClones: false,
+			maxKeys: MAX_KEYS,
+		});
+		global.cache = this;
+	}
+
+	public set<T>(key: string, value: T, ttl: number = TTL_SECONDS) {
+		this.cache.set<T>(key, value, ttl);
+	}
+
+	public get<T>(key: string) {
+		return this.cache.get<T>(key);
+	}
+
+	public getAllKeys() {
+		return this.cache.keys();
+	}
+
+	public del(key: string) {
+		return this.cache.del(key);
+	}
+
+	public flushAll() {
+		this.cache.flushAll();
+	}
+
+	public invalidate(key: string) {
+		if (this.cache.has(key)) {
+			this.cache.del(key);
+		}
+	}
+}
+
+declare global {
+	var cache: CacheFactory;
+}
+
+export const Cache = global.cache || new CacheFactory();
