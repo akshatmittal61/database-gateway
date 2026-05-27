@@ -18,19 +18,20 @@ export type User = Model<{
 }>;
 
 /**
- * Blog model
- * @param {string} title - Title of the blog
- * @param {string} slug - Slug of the blog
- * @param {string} content - Content of the blog
- * @param {number} likes - Number of likes on the blog (optional - defaults to 0)
- * @param {string} status - Status of the blog - ACTIVE | INACTIVE
- * @param {string} author - Author of the blog
+ * App model
+ * @param {string} name - Name of the app
+ * @param {string} identifier - Identifier of the app (optional - defaults to name in kebab-case-random-id)
+ * @param {string} description - Description of the app
+ * @param {Array<string>} origins - Origins of the app
+ * @param {Array<string>} allowedDbs - Databases allowed for the app (by name)
+ * @param {string} apiKeyHash - Hash of the API key
  */
-export type Blog = Model<{
-	title: string;
-	slug: string;
-	content: string;
-	likes?: number;
-	status: T_BLOG_STATUS;
+export type App = Model<{
+	name: string;
+	identifier: string;
+	description?: string;
+	origins: Array<string>;
+	allowedDbs: Array<string>;
+	apiKeyHash: string;
 	author: string;
 }>;
