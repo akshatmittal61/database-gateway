@@ -1,3 +1,4 @@
+export * from "./app";
 export * from "./boolean";
 export * from "./collections";
 export * from "./functions";

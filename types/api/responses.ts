@@ -1,8 +1,9 @@
-import { IBlog } from "@/types";
+import { AppInfo } from "@/types";
 
-// Blog
-export type GetAllBlogs = Array<IBlog>;
-export type GetBlogBySlug = IBlog;
-export type CreateBlog = IBlog;
-export type UpdateBlog = IBlog | null;
-export type DeleteBlog = IBlog;
+export type GetAllApps = AppInfo[];
+export type GetApp = AppInfo;
+export type CreateApp = AppInfo & { apiKey: string };
+export type UpdateApp = AppInfo;
+export type DeleteApp = AppInfo;
+// Registration and rotation: plain key returned ONCE, never again
+export type RotateKey = { identifier: string; apiKey: string };

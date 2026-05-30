@@ -24,7 +24,10 @@ export type User = Model<{
  * @param {string} description - Description of the app
  * @param {Array<string>} origins - Origins of the app
  * @param {Array<string>} allowedDbs - Databases allowed for the app (by name)
- * @param {string} apiKeyHash - Hash of the API key
+ * @param {string} apiKeyPrefix - Prefix of the API key (used to identify the app)
+ * @param {string} apiKeyHash - Hash of the API key (used for verification)
+ * @param {string} author - ID of the user who created the app
+ * @param {Date} lastUsedAt - Timestamp of the last time the app was used
  */
 export type App = Model<{
 	name: string;
@@ -32,6 +35,8 @@ export type App = Model<{
 	description?: string;
 	origins: Array<string>;
 	allowedDbs: Array<string>;
+	apiKeyPrefix: string;
 	apiKeyHash: string;
 	author: string;
+	lastUsedAt: string;
 }>;

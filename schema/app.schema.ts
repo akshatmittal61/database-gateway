@@ -25,6 +25,15 @@ export const AppSchema: Schema<App> = {
 		type: [String],
 		default: [],
 	},
+	apiKeyPrefix: {
+		type: String,
+		required: true,
+		unique: true,
+		index: {
+			unique: true,
+			sparse: true,
+		},
+	},
 	apiKeyHash: {
 		type: String,
 		required: true,
@@ -35,5 +44,9 @@ export const AppSchema: Schema<App> = {
 		ref: "User",
 		required: true,
 		index: true,
+	},
+	lastUsedAt: {
+		type: Date,
+		default: null,
 	},
 };
