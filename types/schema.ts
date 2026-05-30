@@ -1,4 +1,4 @@
-import { T_BLOG_STATUS, T_USER_ROLE, T_USER_STATUS } from "./enum";
+import { T_USER_ROLE, T_USER_STATUS } from "./enum";
 import { Model } from "./parser";
 
 /**
