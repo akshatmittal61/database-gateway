@@ -2,7 +2,7 @@ import { Cache } from "@/cache";
 import { cacheParameter, TTL_SECONDS } from "@/constants";
 import { InvalidDataFormatException } from "@/errors";
 import { Logger } from "@/log";
-import { CacheParameter, CachePayloadGenerator, IBlog, IUser } from "@/types";
+import { CacheParameter, CachePayloadGenerator, IUser } from "@/types";
 import { SafetyUtils } from "@/utils";
 
 export class CacheService {
@@ -51,15 +51,6 @@ export class CacheService {
 				this.getKeySetOfRandomObject(data),
 				"{ id } | { email }"
 			);
-		} else if (parameter === cacheParameter.BLOG) {
-			const payload = data as CachePayloadGenerator<"BLOG">;
-			if ("id" in payload) {
-				return `blog:${payload.id}`;
-			}
-			throw new InvalidDataFormatException(
-				this.getKeySetOfRandomObject(data),
-				"{ id }"
-			);
 		} else {
 			return `cache:${parameter}:${JSON.stringify(data)}`;
 		}
@@ -101,11 +92,6 @@ export class CacheService {
 		Cache.set(key, value);
 	}
 
-	public static setBlog(keyGen: CachePayloadGenerator<"BLOG">, value: IBlog) {
-		const key = this.getKey(cacheParameter.BLOG, keyGen);
-		Cache.set(key, value);
-	}
-
 	public static async fetchUser(
 		keyGen: CachePayloadGenerator<"USER">,
 		callback: () => Promise<IUser | null>
@@ -116,22 +102,8 @@ export class CacheService {
 		);
 	}
 
-	public static async fetchBlog(
-		keyGen: CachePayloadGenerator<"BLOG">,
-		callback: () => Promise<IBlog | null>
-	) {
-		return await CacheService.fetch(
-			this.getKey(cacheParameter.BLOG, keyGen),
-			callback
-		);
-	}
-
 	public static invalidateUser(keyGen: CachePayloadGenerator<"USER">) {
 		Cache.invalidate(this.getKey(cacheParameter.USER, keyGen));
-	}
-
-	public static invalidateBlog(keyGen: CachePayloadGenerator<"BLOG">) {
-		Cache.invalidate(this.getKey(cacheParameter.BLOG, keyGen));
 	}
 
 	public static clearAllCacheData() {
