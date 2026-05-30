@@ -11,7 +11,6 @@ export const getObjectFromMongoResponse = <T>(response: any): T | null => {
 	}
 	const object = response.toObject ? response.toObject() : response;
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { _id, id, __v, createdAt, updatedAt, ...rest } = object;
 	const entityId = (_id ?? id).toString();
 	const data = {
